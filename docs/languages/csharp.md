@@ -6,7 +6,7 @@ ContentId: 40C8AAC1-C00D-4E91-8877-737A598346B6
 PageTitle: C# programming with Visual Studio Code
 DateApproved: 6/6/2023
 MetaDescription: Find out how to get the best out of Visual Studio Code and C#.
-MetaSocialImage: images/csharp/languages_csharp.png
+MetaSocialImage: images/csharp/languages-csharp-social.png
 ---
 # Working with C&#35;
 
@@ -40,6 +40,7 @@ Supported .NET project types include:
 * ASP.NET Core App
 * ASP.NET Core Web API
 * ASP.NET Core MVC Web App
+* Blazor Web App
 * Blazor Server App
 * Blazor WebAssembly App
 * Console App
@@ -76,7 +77,7 @@ IntelliSense just works: hit `kb(editor.action.triggerSuggest)` at any time to g
 
 GitHub Copilot provides suggestions for numerous languages and a wide variety of frameworks, and it works especially well for Python, JavaScript, TypeScript, Ruby, Go, C# and C++.
 
-You can learn more about how to get started with Copilot in the [Copilot documentation](/docs/editor/artificial-intelligence.md).
+You can learn more about how to get started with Copilot in the [Copilot documentation](/docs/editor/github-copilot.md).
 
 ## Snippets for C&#35;
 

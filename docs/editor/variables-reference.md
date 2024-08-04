@@ -4,7 +4,7 @@ Area: editor
 TOCTitle: Variables reference
 ContentId: ff9cd4ea-e3f0-4170-9451-2f2ea2b909ea
 PageTitle: Visual Studio Code Variables Reference
-DateApproved: 10/4/2023
+DateApproved: 08/01/2024
 MetaDescription: Visual Studio Code variable substitution reference
 ---
 # Variables Reference
@@ -33,6 +33,7 @@ The following predefined variables are supported:
 - **${execPath}** - the path to the running VS Code executable
 - **${defaultBuildTask}** - the name of the default build task
 - **${pathSeparator}** - the character used by the operating system to separate components in file paths
+- **${/}** - shorthand for **${pathSeparator}**
 
 ### Predefined variables examples
 

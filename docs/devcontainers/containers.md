@@ -5,7 +5,7 @@ TOCTitle: Overview
 PageTitle: Developing inside a Container using Visual Studio Code Remote Development
 ContentId: 7ec8a02b-2eb7-45c1-bb16-ddeaac694ff6
 MetaDescription: Developing inside a Container using Visual Studio Code Remote Development
-DateApproved: 10/4/2023
+DateApproved: 08/01/2024
 ---
 # Developing inside a Container
 
@@ -169,7 +169,7 @@ The rest of the Dev Containers quick start applies as-is. You can learn more abo
 
 ### Open a folder on a remote Tunnel host in a container
 
-If you are using a Linux machine as a tunnel host, you can use the [Remote - Tunnels](/docs/remote/tunnels.md) and Dev Containers extensions together. You do not even need to have a Docker client installed locally. This is similar to the SSH host scenario above, but uses Remote - Tunnels instead.
+You can use the [Remote - Tunnels](/docs/remote/tunnels.md) and Dev Containers extensions together to open a folder on your remote host inside of a container. You do not even need to have a Docker client installed locally. This is similar to the SSH host scenario above, but uses Remote - Tunnels instead.
 
 To do so:
 
@@ -427,6 +427,23 @@ While you can edit your [devcontainer.json](/docs/devcontainers/create-dev-conta
 
 ![Add to devcontainer.json menu](images/containers/containers-addto-devcontainer.png)
 
+### Opt out of extensions
+
+If a base image or Feature configures an extension that you do not want installed in your dev container, you can opt out by listing the extension with a minus sign. For example:
+
+```json
+{
+    "image": "mcr.microsoft.com/devcontainers/typescript-node:1-20-bookworm",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "-dbaeumer.vscode-eslint"
+            ]
+        }
+    }
+}
+```
+
 ### "Always installed" extensions
 
 If there are extensions that you would like always installed in any container, you can update the `dev.containers.defaultExtensions` User [setting](/docs/getstarted/settings.md). For example, if you wanted to install the [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) and [Resource Monitor](https://marketplace.visualstudio.com/items?itemName=mutantdino.resourcemonitor) extensions, you would specify their extension IDs as follows:
@@ -569,7 +586,7 @@ Or in `settings.json`:
 {
     "dotfiles.repository": "your-github-id/your-dotfiles-repo",
     "dotfiles.targetPath": "~/dotfiles",
-    "dotfiles.installCommand": "~/dotfiles/install.sh"
+    "dotfiles.installCommand": "install.sh"
 }
 ```
 
@@ -585,7 +602,6 @@ From this point forward, the dotfiles repository will be used whenever a contain
 * Docker Toolbox on Windows is not supported.
 * If you clone a Git repository using SSH and your SSH key has a passphrase, VS Code's pull and sync features may hang when running remotely. Either use an SSH key without a passphrase, clone using HTTPS, or run `git push` from the command line to work around the issue.
 * Local proxy settings are not reused inside the container, which can prevent extensions from working unless the appropriate proxy information is configured (for example global `HTTP_PROXY` or `HTTPS_PROXY` environment variables with the appropriate proxy information).
-* You cannot use Dev Containers from a Remote - SSH connection to a Windows machine.
 * There is an incompatibility between OpenSSH versions on Windows when the ssh-agent runs with version <= 8.8 and the SSH client (on any platform) runs version >= 8.9. The workaround is to upgrade OpenSSH on Windows to 8.9 or later, either using winget or an installer from [Win32-OpenSSH/releases](https://github.com/PowerShell/Win32-OpenSSH/releases). (Note that `ssh-add -l` will work correctly, but `ssh <ssh-server>` will fail with `<ssh-server>: Permission denied (publickey)`. This also affects Git when using SSH to connect to the repository.)
 
 See [here for a list of active issues](https://aka.ms/vscode-remote/containers/issues) related to Containers.

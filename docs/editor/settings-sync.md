@@ -4,30 +4,40 @@ Area: editor
 TOCTitle: Settings Sync
 ContentId: 6cb84e60-6d90-4137-83f6-bdab3438b8f5
 PageTitle: Settings Sync in Visual Studio Code
-DateApproved: 10/4/2023
+DateApproved: 08/01/2024
 MetaDescription: Synchronize your user settings across all your Visual Studio Code instances.
 ---
 # Settings Sync
 
 Settings Sync lets you share your Visual Studio Code configurations such as settings, keybindings, and installed extensions across your machines so you are always working with your favorite setup.
 
+> **Note**: VS Code does not synchronize your extensions to or from a [remote](/docs/remote/remote-overview.md) window, such as when you're connected to SSH, a development container (devcontainer), or WSL.
+
 ## Turning on Settings Sync
 
-You can turn on Settings Sync using the **Turn On Settings Sync...** entry in the **Manage** gear menu at the bottom of the Activity Bar.
+You can turn on Settings Sync by using the **Backup and Sync Settings...** entry in the **Manage** gear menu or the **Accounts** menu at the bottom of the Activity Bar.
 
-![Turn on Sync command](images/settings-sync/turn-on-sync.png)
+![Screenshot of the Manage menu, highlighting the Backup and Sync Settings command.](images/settings-sync/turn-on-sync.png)
 
-You will be asked to sign in and what preferences you would like to sync; currently Settings, Keyboard Shortcuts, Extensions, User Snippets, and UI State are supported.
+To use Sync settings, you need to sign in and select which settings you want to sync. Currently, the Settings Sync supports the following settings:
 
-![Settings Sync configure dialog](images/settings-sync/sync-configure.png)
+* Settings
+* Keyboard shortcuts
+* User snippets
+* User tasks
+* UI State
+* Extensions
+* Profiles
 
-Selecting the **Sign in & Turn on** button will ask you to choose between signing in with your Microsoft or GitHub account.
+![Screenshot of the Settings Sync configure Quick Pick to select the settings to synchronize.](images/settings-sync/sync-configure.png)
 
-![Settings Sync configure dialog](images/settings-sync/sync-accounts.png)
+When you select the **Sign in** button, you can choose between signing in with your Microsoft or GitHub account.
 
-After making this selection, the browser will open so that you can sign in to your Microsoft or GitHub account. When a Microsoft account is chosen, you can use either personal accounts, such as Outlook accounts, or Azure accounts, and you can also link a GitHub account to a new or existing Microsoft account.
+![Screenshot of the Settings Sync Quick Pick to choose an account type.](images/settings-sync/sync-accounts.png)
 
-After signing in, Settings Sync will be turned on and continue to synchronize your preferences automatically in the background.
+After making this selection, the browser opens so that you can sign in to your Microsoft or GitHub account. If you choose a Microsoft account, you can use either personal accounts, such as Outlook accounts, or Azure accounts, and you can also link a GitHub account to a new or existing Microsoft account.
+
+After signing in, Settings Sync is turned on and continues to synchronize your preferences automatically in the background.
 
 ## Merge or Replace
 
@@ -138,15 +148,17 @@ No, the [Settings Sync](https://marketplace.visualstudio.com/items?itemName=Shan
 
 VS Code Settings Sync supports signing in with either a Microsoft account (for example Outlook or Azure accounts) or a GitHub account. Sign in with GitHub Enterprise accounts is not supported. Other authentication providers may be supported in the future and you can review the proposed Authentication Provider API in [issue #88309](https://github.com/microsoft/vscode/issues/88309).
 
+>**Note**: VS Code Settings Sync does not support using your [Microsoft Sovereign Cloud](https://www.microsoft.com/en-us/industry/sovereignty/cloud) account at this time. If this is something you would like, please let us know what kind of Microsoft Sovereign Cloud you would like to use [in this GitHub issue](https://github.com/microsoft/vscode/issues/196509).
+
 ### Can I use a different backend or service for Settings Sync?
 
 Settings Sync uses a dedicated service to store settings and coordinate updates. A service provider API may be exposed in the future to allow for custom Settings Sync backends.
 
 ## Troubleshooting keychain issues
 
-> NOTE: This section applies to VS Code version **1.80 and higher**. In 1.80, we moved away from [keytar](https://github.com/atom/node-keytar), due to its archival, in favor of Electron's [safeStorage API](https://www.electronjs.org/docs/latest/api/safe-storage).
-
-> NOTE: keychain, keyring, wallet, credential store are synonymous in this document.
+>**Note**: This section applies to VS Code version **1.80 and higher**. In 1.80, we moved away from [keytar](https://github.com/atom/node-keytar), due to its archival, in favor of Electron's [safeStorage API](https://www.electronjs.org/docs/latest/api/safe-storage).
+>
+>**Note**: keychain, keyring, wallet, credential store are synonymous in this document.
 
 Settings Sync persists authentication information on desktop using the OS keychain for encryption. Using the keychain can fail in some cases if the keychain is misconfigured or the environment isn't recognized.
 
@@ -166,7 +178,7 @@ Towards the top of the logs from the previous command, you will see something to
 
 ```
 [9699:0626/093542.027629:VERBOSE1:key_storage_util_linux.cc(54)] Password storage detected desktop environment: GNOME
-[9699:0626/093542.027660:VERBOSE1:key_storage_linux.cc(122)] Selected backend for OSCrypt: GNOME_ANY
+[9699:0626/093542.027660:VERBOSE1:key_storage_linux.cc(122)] Selected backend for OSCrypt: GNOME_LIBSECRET
 ```
 
 We rely on Chromium's oscrypt module to discover and store encryption key information in the keyring. Chromium supports [a number of different desktop environments](https://source.chromium.org/chromium/chromium/src/+/main:base/nix/xdg_util.cc;l=146-169). Outlined below are some popular desktop environments and troubleshooting steps that may help if the keyring is misconfigured.
@@ -189,17 +201,15 @@ First off, if your desktop environment wasn't detected, you can [open an issue o
 
 #### (recommended) Configure the keyring to use with VS Code
 
-You can manually tell VS Code which keyring to use by passing the `password-store` flag. Our recommended configuration is to first install [gnome-keyring](https://wiki.gnome.org/Projects/GnomeKeyring) if you don't have it already and then launch VS Code with `code --password-store="gnome"`.
+You can manually tell VS Code which keyring to use by passing the `password-store` flag. Our recommended configuration is to first install [gnome-keyring](https://wiki.gnome.org/Projects/GnomeKeyring) if you don't have it already and then launch VS Code with `code --password-store="gnome-libsecret"`.
 
-If this solution works for you, you can persist the value of `password-store` by opening the Command Palette (`kb(workbench.action.showCommands)`) and running the **Preferences: Configure Runtime Arguments** command. This will open the `argv.json` file where you can add the setting `"password-store":"gnome"`.
+If this solution works for you, you can persist the value of `password-store` by opening the Command Palette (`kb(workbench.action.showCommands)`) and running the **Preferences: Configure Runtime Arguments** command. This will open the `argv.json` file where you can add the setting `"password-store":"gnome-libsecret"`.
 
 Here are all the possible values of `password-store` if you would like to try using a different keyring than `gnome-keyring`:
 
 * `kwallet5`: For use with [kwalletmanager5](https://apps.kde.org/kwalletmanager5/).
-* `gnome`: This option will first try the `gnome-libsecret` option implementation and then if that fails, it will fallback to the `gnome-keyring` option implementation.
 * `gnome-libsecret`: For use with any package that implements the [Secret Service API](https://www.gnu.org/software/emacs/manual/html_node/auth/Secret-Service-API.html) (for example `gnome-keyring`, `kwallet5`, `KeepassXC`).
 * _(not recommended)_ `kwallet`: For use with older versions of `kwallet`.
-* _(not recommended)_ `gnome-keyring`: A different implementation to access `gnome-keyring` and should only be used if `gnome-libsecret` has a problem.
 * _(not recommended)_ `basic`: See the [section below on basic text](#not-recommended-configure-basic-text-encryption) for more details.
 
 Don't hesitate to [open an issue on VS Code](https://github.com/microsoft/vscode/issues/new/choose) with the verbose logs if you run into any issues.

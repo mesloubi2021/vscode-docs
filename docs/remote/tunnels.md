@@ -5,13 +5,13 @@ TOCTitle: Tunnels
 PageTitle: Remote Tunnels
 ContentId: 5d33c1af-b4e6-4894-aae1-acf95ee3ffa8
 MetaDescription: Using the Visual Studio Code Remote Tunnels extension
-DateApproved: 10/4/2023
+DateApproved: 08/01/2024
 ---
 # Developing with Remote Tunnels
 
 The Visual Studio Code [Remote - Tunnels](https://marketplace.visualstudio.com/items?itemName=ms-vscode.remote-server) extension lets you connect to a remote machine, like a desktop PC or virtual machine (VM), via a secure tunnel. You can connect to that machine from a VS Code client anywhere, without the requirement of SSH.
 
-Tunneling securely transmits data from one network to another.
+Tunneling securely transmits data from one network to another via [Microsoft dev tunnels](https://learn.microsoft.com/azure/developer/dev-tunnels/overview).
 
 This can eliminate the need for source code to be on your VS Code client machine since the extension runs commands and other extensions directly on the remote machine.
 
@@ -98,7 +98,7 @@ Like the other Remote Development extensions, the name of your remote machine wi
 
 ### Open a folder on a Remote Tunnels host in a container
 
-If you are using a Linux machine as a tunnel host, you can use the Remote - Tunnels and [Dev Containers](/docs/devcontainers/containers.md) extensions together to open a folder on your remote host inside of a container. You do not even need to have a Docker client installed locally.
+You can use the Remote - Tunnels and [Dev Containers](/docs/devcontainers/containers.md) extensions together to open a folder on your remote host inside of a container. You do not even need to have a Docker client installed locally.
 
 To do so:
 
@@ -143,15 +143,21 @@ Both hosting and connecting to a tunnel requires authentication with the same Gi
 
 Once you connect from a remote VS Code instance, an SSH connection is created over the tunnel in order to provide end-to-end encryption. The current preferred cipher for this encryption is AES 256 in CTR mode, and the code that implements this is [open source](https://github.com/microsoft/dev-tunnels).
 
-If you're part of an organization who wants to control access to Remote Tunnels, you can do so by allowing or denying access to the domain `global.rel.tunnels.api.visualstudio.com`.
+You can learn more about the security of the underlying dev tunnels service in its [documentation](https://learn.microsoft.com/azure/developer/dev-tunnels/security).
 
 ### Are there usage limits for the tunneling service?
 
 To avoid abuse of the underlying tunneling service, there are usage limits in place for resources like number of tunnels and bandwidth. We anticipate most users to never reach these limits.
 
-For instance, right now you can have 5 tunnels registered for your account. If you'd like to create a new tunnel and already have 5 others registered, the CLI will pick a random unused tunnel and delete it. Please note this limit is subject to change.
+For instance, right now you can have 10 tunnels registered for your account. If you'd like to create a new tunnel and already have 10 others registered, the CLI will pick a random unused tunnel and delete it. Please note this limit is subject to change.
 
 If you are hitting a limit and would like to discuss getting more usage, we'd love to learn more. Please reach out to `vscodeserver@microsoft.com` with information on your scenario and how much usage you need.
+
+### Can I configure policies across my organization?
+
+If you're part of an organization that wants to control access to port forwarding, you can do so by allowing or denying access to the domain `global.rel.tunnels.api.visualstudio.com`.
+
+For users running Windows devices, you can also configure and then deploy group policy settings for dev tunnels. You can learn more in the [dev tunnels documentation](https://learn.microsoft.com/azure/developer/dev-tunnels/policies).
 
 ### How can I ensure I keep my tunnel running?
 
@@ -164,4 +170,4 @@ As mentioned in the [`code` CLI doc](/docs/editor/command-line.md#create-remote-
 
 ### Can I use other Remote Development Extensions or a dev container while I'm tunneling?
 
-Currently, you can connect to WSL over Remote - Tunnels.
+Yes! Currently, you can connect to [WSL](/docs/remote/wsl.md) and [dev containers](/docs/devcontainers/containers.md#open-a-folder-on-a-remote-tunnel-host-in-a-container) over Remote - Tunnels.

@@ -4,9 +4,9 @@ Area: editor
 TOCTitle: Basic Editing
 ContentId: DE4EAE2F-4542-4363-BB74-BE47D64141E6
 PageTitle: Basic Editing in Visual Studio Code
-DateApproved: 10/4/2023
+DateApproved: 08/01/2024
 MetaDescription: Learn about the basic editing features of Visual Studio Code. Search, multiple selection, code formatting.
-MetaSocialImage: codebasics_CodeBasics.png
+MetaSocialImage: images/codebasics/code-basics-social.png
 ---
 # Basic Editing
 
@@ -43,7 +43,7 @@ The setting can be set to:
 * `ctrlCmd` - Maps to `kbstyle(Ctrl)` on Windows and `kbstyle(Cmd)` on macOS.
 * `alt` - The existing default `kbstyle(Alt)`.
 
-There's also a menu item **Use Ctrl+Click for Multi-Cursor** in the **Selection** menu to quickly toggle this setting.
+There's also a menu item **Selection** > **Switch to Ctrl+Click for Multi-Cursor** or **Selection** > **Switch to Alt+Click for Multi-Cursor** to quickly toggle this setting.
 
 The **Go to Definition** and **Open Link** gestures will also respect this setting and adapt such that they do not conflict. For example, when the setting is `ctrlCmd`, multiple cursors can be added with `kbstyle(Ctrl/Cmd+Click)`, and opening links or going to definition can be invoked with `kbstyle(Alt+Click)`.
 
@@ -97,7 +97,7 @@ For more control over `Auto Save`, open User or Workspace [settings](/docs/getst
 
 ## Hot Exit
 
-VS Code will remember unsaved changes to files when you exit by default. Hot exit is triggered when the application is closed via **File** > **Exit** (**Code** > **Quit** on macOS) or when the last window is closed.
+By default, VS Code remembers unsaved changes to files when you exit. Hot exit is triggered when the application is closed via **File** > **Exit** (**Code** > **Quit** on macOS) or when the last window is closed.
 
 You can configure hot exit by setting `files.hotExit` to the following values:
 
@@ -105,7 +105,7 @@ You can configure hot exit by setting `files.hotExit` to the following values:
 * `"onExit"`: Hot exit will be triggered when the application is closed, that is when the last window is closed on Windows/Linux or when the `workbench.action.quit` command is triggered (from the **Command Palette**, keyboard shortcut or menu). All windows without folders opened will be restored upon next launch.
 * `"onExitAndWindowClose"`: Hot exit will be triggered when the application is closed, that is when the last window is closed on Windows/Linux or when the `workbench.action.quit` command is triggered (from the **Command Palette**, keyboard shortcut or menu), and also for any window with a folder opened regardless of whether it is the last window. All windows without folders opened will be restored upon next launch. To restore folder windows as they were before shutdown, set `window.restoreWindows` to `all`.
 
-If something happens to go wrong with hot exit, all backups are stored in the following folders for standard install locations:
+If something goes wrong with hot exit, all backups are stored in the following folders for standard install locations:
 
 * **Windows** `%APPDATA%\Code\Backups`
 * **macOS** `$HOME/Library/Application Support/Code/Backups`
@@ -123,7 +123,7 @@ When the Find Widget is opened, it will automatically populate the selected text
 
 ![Seed Search String From Selection](images/codebasics/seed-search-string-from-selection.gif)
 
-This feature can be turned off by setting `editor.find.seedSearchStringFromSelection` to `false`.
+This feature can be turned off by setting `editor.find.seedSearchStringFromSelection` to `"never"`.
 
 ### Find In Selection
 
@@ -162,6 +162,8 @@ VS Code allows you to quickly search over all files in the currently opened fold
 >**Tip:** We support regular expression searching in the search box, too.
 
 You can configure advanced search options by clicking the ellipsis (**Toggle Search Details**) below the search box on the right (or press `kb(workbench.action.search.toggleQueryDetails)`). This will show additional fields to configure the search.
+
+>**Tip:** You can use Quick Search to quickly find text across all files in the currently opened folder. Open the Command Palette (`kb(workbench.action.showCommands)`) and enter the **Search: Quick Search** command.
 
 ### Advanced search options
 
@@ -216,7 +218,7 @@ Below is a search for the word 'SearchEditor' with two lines of text before and 
 
 The **Open Search Editor** command opens an existing Search Editor if one exists, or to otherwise create a new one. The **New Search Editor** command will always create a new Search Editor.
 
-In the Search Editor, results can be navigated to using **Go to Definition** actions, such as `kb(editor.action.revealDefinition)` to open the source location in the current editor group, or `kb(editor.action.revealDefinitionAside)` to open the location in an editor to the side. Additionally, double-clicking can optionally open the source location, configurable with the `search.searchEditor.doubleClickBehaviour` setting.
+In the Search Editor, results can be navigated to using **Go to Definition** actions, such as `kb(editor.action.revealDefinition)` to open the source location in the current editor group, or `kb(editor.action.revealDefinitionAside)` to open the location in an editor to the side. Additionally, you can configure the behavior for single-clicking or double-clicking a search result with the `search.searchEditor.singleClickBehaviour` and `search.searchEditor.doubleClickBehaviour` settings. For example, to open a peek definition window or to open the source location.
 
 You can also use the **Open New Search Editor** button at the top of the Search view, and can copy your existing results from a Search view over to a Search Editor with the **Open in editor** link at the top of the results tree, or the **Search Editor: Open Results in Editor** command.
 
@@ -257,7 +259,7 @@ The `search.searchEditor.reusePriorSearchConfiguration` setting (default is `fal
 
 We'll always offer word completion, but for the rich [languages](/docs/languages/overview.md), such as JavaScript, JSON, HTML, CSS, SCSS, Less, C# and TypeScript, we offer a true IntelliSense experience. If a language service knows possible completions, the IntelliSense suggestions will pop up as you type. You can always manually trigger it with `kb(editor.action.triggerSuggest)`.  By default, `kbstyle(Tab)` or `kbstyle(Enter)` are the accept keyboard triggers but you can also [customize these key bindings](/docs/getstarted/keybindings.md).
 
-> **Tip:** The suggestions filtering supports CamelCase so you can type the letters which are upper cased in a method name to limit the suggestions. For example, "cra" will quickly bring up "createApplication".
+> **Tip:** The suggestions filtering supports CamelCase, so you can type the letters which are upper cased in a method name to limit the suggestions. For example, "cra" will quickly bring up "createApplication".
 
 > **Tip:** IntelliSense suggestions can be configured via the `editor.quickSuggestions` and `editor.suggestOnTriggerCharacters` [settings](/docs/getstarted/settings.md).
 
@@ -330,7 +332,7 @@ C/C++|`#pragma region`|`#pragma endregion`
 CSS/Less/SCSS|`/*#region*/`|`/*#endregion*/`
 Coffeescript|`#region`|`#endregion`
 F#|`//#region` or `(#region)`|`//#endregion` or `(#endregion)`
-Java|`//#region` or `//<editor-fold>`|`// #endregion` or `//</editor-fold>`
+Java|`//#region` or `//<editor-fold>`|`//#endregion` or `//</editor-fold>`
 Markdown|`<!-- #region -->`|`<!-- #endregion -->`
 Perl5|`#region` or `=pod`|`#endregion` or `=cut`
 PHP|`#region`|`#endregion`
@@ -396,6 +398,23 @@ Then choose an encoding.
 
 ![Select an encoding](images/codebasics/encodingselection.png)
 
+## Compare files
+
+VS Code supports several ways to compare the content of the current file or of any two files.
+
+When you have an active file open in the editor, you have the following compare options:
+
+* **Compare with a workspace file**: in the Command Palette, select **File: Compare Active File With...**, and then choose another file to compare with.
+* **Compare with clipboard**: in the Command Palette, select **File: Compare Active File with Clipboard** (`kb(workbench.files.action.compareWithClipboard)`) to compare the current file with the clipboard content.
+* **Compare with saved**: in the Command Palette, select **File: Compare Active File with Saved** (`kb(workbench.files.action.compareWithSaved)`) to compare the current file with the last saved version.
+
+To compare any two files:
+
+* Right-click on a file in the Explorer view and select **Select for Compare**. Then, right-click on a second file and select **Compare with Selected**.
+* To start a comparison between two empty editor windows, select **File: Compare New Untitled Text Files** from the Command Palette.
+
+> **Tip:** You can start VS Code from the command line with the `--diff` option to compare two files. Learn more about the [VS Code command line interface](/docs/editor/command-line.md#core-cli-options).
+
 ## Next steps
 
 You've covered the basic user interface - there is a lot more to VS Code.  Read on to find out about:
@@ -426,6 +445,8 @@ You can control word wrap through the `editor.wordWrap` [setting](/docs/getstart
 You can toggle word wrap for the VS Code session with `kb(editor.action.toggleWordWrap)`.
 
 You can also add vertical column rulers to the editor with the `editor.rulers` setting, which takes an array of column character positions where you'd like vertical rulers.
+
+As in other editors, commands such as **Cut** and **Copy** apply to the whole wrapped line. Triple-click selects the whole wrapped line. Pressing `kbstyle(Home)` twice moves the cursor to the very beginning of the line. Pressing `kbstyle(End)` twice moves the cursor to the very end of the line.
 
 ### How can I avoid placing extra cursors in word wrapped lines?
 

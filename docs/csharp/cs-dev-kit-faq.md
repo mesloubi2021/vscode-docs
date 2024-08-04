@@ -1,10 +1,10 @@
 ---
-Order: 11
+Order: 12
 Area: csharp
 TOCTitle: FAQ
 ContentId: edd2c270-152c-419d-b5d9-06f2f95979cd
 PageTitle: C# Dev Kit extension FAQ
-DateApproved: 10/3/2023
+DateApproved: 5/3/2024
 MetaDescription: C# Dev Kit extension Frequently Asked Questions (FAQ)
 ---
 
@@ -16,7 +16,7 @@ Use this FAQ (Frequently Asked Questions) topic to learn more about the C# Dev K
 
 ### What is C# Dev Kit?
 
-[C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit) is an extension created to enhance your C# development experience in Visual Studio Code. It aims to bring a more expansive, productive, and reliable C# experience to VS Code. The Dev Kit does not replace the [existing C# extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) but adds on top of the great language service features it provides. Developers can choose to continue using the updated version of the existing C# extension or enhance their experience by adding the C# Dev Kit.
+[C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit) is an extension created to enhance your C# development experience in Visual Studio Code. It aims to bring a more expansive, productive, and reliable C# experience to VS Code. C# Dev Kit does not replace the [existing C# extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) but adds on top of the great language service features it provides. Developers can choose to continue using the updated version of the existing C# extension or enhance their experience by adding C# Dev Kit.
 
 ### What project types are currently supported?
 
@@ -33,13 +33,25 @@ Today the extensions included in the C# Dev Kit family are:
 
 Use of these extensions are governed under the [EULA for the C# Dev Kit family of extensions](https://aka.ms/vs/csdevkit/license).
 
-These extensions also have dependencies that carry their own licensing – for example, the C# Dev Kit extension depends on the [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp).
+These extensions also have dependencies that carry their own licensing – for example, C# Dev Kit depends on the [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) and [.NET Install Tool](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.vscode-dotnet-runtime).
+
+### Why isn't C# Dev Kit activating / C# Dev Kit commands are not found?
+
+There are a few reasons why C# Dev Kit doesn't activate when you attempt to edit a C# file.
+
+1. **version 2.0+ of the C# extension is not installed**. C# Dev Kit requires version 2.0 or higher of the C# extension. Check to make sure you have the C# extension installed and that you have a version 2.0 or higher.
+1. **workspace prefers C# extension**. C# Dev Kit does not support .NET Framework projects and if you have set the `dotnet.preferCSharpExtension` setting to true, C# Dev Kit will be disabled for that workspace. If the project is not a .NET Framework project, make sure to disable this setting.
+1. **using a readonly OS**. C# Dev Kit requires write access to its own extension folder and to the VS Code-provided folder for extensions to write arbitrary state within the operating system, so if you are using an OS that is completely readonly, C# Dev Kit will not work.
+
+If you have checked these and the C# Dev Kit commands are still not found, please report an issue and provide the information in the Output window for C# Dev Kit.
+
+## Licensing and Contributing
 
 ### Who can use C# Dev Kit?
 
 C# Dev Kit is available via a Community License for those who qualify and is also included as another addition to existing [Visual Studio Subscriptions](https://visualstudio.microsoft.com/subscriptions). This means that C# Dev Kit is available to use today for developers with active Visual Studio subscriptions.
 
-For personal, academic, and open-source projects, the C# Dev Kit can be used at no cost. For commercial purposes, teams of up to 5 can also use the C# Dev Kit at no cost. For 6+ developers, those users will need a Visual Studio Professional (or higher) subscription. The C# Dev Kit is also included in GitHub Codespaces and Microsoft Dev Box, so users of those products have access to the C# Dev Kit at no additional charge.
+For personal, academic, and open-source projects, C# Dev Kit can be used at no cost. For commercial purposes, teams of up to 5 can also use the C# Dev Kit at no cost. For 6+ developers, those users will need a Visual Studio Professional (or higher) subscription. C# Dev Kit is also included in GitHub Codespaces and Microsoft Dev Box, so users of those products have access to C# Dev Kit at no additional charge.
 
 ### Where do I submit feedback and suggestions?
 
@@ -71,26 +83,26 @@ Note that, depending on your network speed, installing the .NET Core runtime mig
 }
 ```
 
-### Error acquiring .NET 7
+### Error acquiring .NET SDK
 
-![Error acquiring .NET 7](images/faq/error-acquiring-dotnet-7.png)
+![Error acquiring .NET SDK](images/faq/error-acquiring-dotnet-7.png)
 
-Note: If you are located in China, your .NET download may be blocked and cause a timeout.
+Note: If you are located in China, your .NET SDK download may be blocked and cause a timeout.
 
-You will need to make sure you have .NET 7 installed. As a workaround, you can point the .NET runtime acquisition extension to an existing .NET 7 install:
+You will need to make sure you have .NET SDK installed. As a workaround, you can point the .NET runtime acquisition extension to an existing .NET install:
 
-![Point the .NET runtime acquisition extension to an existing .NET 7 install](images/faq/point-dotnet-runtime-to-existing-dotnet-install.png)
+![Point the .NET runtime acquisition extension to an existing .NET SDK install](images/faq/point-dotnet-runtime-to-existing-dotnet-install.png)
 
 ### How do I manually install .NET?
 
-If .NET installation is failing or you want to reuse an existing installation of .NET, you can use the `dotnetAcquisitionExtension.existingDotnetPath` setting. .NET can be manually installed from the [.NET website](https://dotnet.microsoft.com/download). To direct the extension to that installation, update your settings with the extension ID and the path as illustrated below:
+If .NET installation is failing or you want to reuse an existing installation of .NET, you can use the `dotnetAcquisitionExtension.existingDotnetPath` setting. .NET can be manually installed from the **C# Dev Kit Walkthrough** or the [.NET website](https://dotnet.microsoft.com/download). To direct the extension to that installation, update your settings with the extension ID and the path as illustrated below:
 
 #### Windows
 
 ```json
 {
     "dotnetAcquisitionExtension.existingDotnetPath": [
-        { "extensionId": "msazuretools.azurerm-vscode-tools", "path": "C\\Program Files\\dotnet\\dotnet.exe" }
+        { "extensionId": "msazuretools.azurerm-vscode-tools", "path": "C:\\Program Files\\dotnet\\dotnet.exe" }
     ]
 }
 ```
@@ -191,6 +203,13 @@ Make sure you have a C# project open or that the active document is a `.cs` or `
 
 If you're trying to debug .NET Console Applications, Blazor Server Apps, Blazor WebAssembly, or Web Applications, make sure to select the **C#** option. The other options may be part of other extensions such as **Node** for JavaScript debugging or **Python** for Python debugging, and are not part of C# Dev Kit.
 
+### When I F5, it prompts me to input a password (macOS only)
+macOS has Developer Mode disabled by default and prompts a password to protect the user if a program wants to be used as a debugger.
+
+If you wish to disable these prompts, you can run the following commands:
+- `DevToolsSecurity --enable`
+- `sudo dscl . append /Groups/_developer GroupMembership $USER`
+
 ### Why is debugging not working?
 
 If you're trying to debug a library or a test project, it's likely that you'll need to take some extra steps to ensure that your code is properly debugged. To debug a library, you can create a console or web application that interacts with the library. For a test project, you can use the Test Explorer to debug your code effectively.
@@ -239,17 +258,17 @@ If you're not seeing enough diagnostics or none at all, it's possible that your 
 
 ### Most or all Blazor components show up with warnings
 
-Before Blazor components can be discovered, C# Dev Kit needs to load your project successfully. Additionally, the Razor language server requires a `project.razor.vscode.json` file to be generated in order to understand the state of your projects. If this file isn't generated, or is generated without any components, the Razor experience may be affected.
+Before Blazor components can be discovered, C# Dev Kit needs to load your project successfully. Additionally, the Razor language server requires a `project.razor.vscode.bin` file to be generated in order to understand the state of your projects. If this file isn't generated, or is generated without any components, the Razor experience may be affected.
 
 To improve performance, the extension sometimes defers generating or loading this file until you open your first `.razor` or `.cshtml` file. To ensure that there are no errors in the Solution Explorer for the project you're trying to use, check it carefully.
 
-If your project has loaded correctly, verify that a `project.razor.vscode.json` file exists in the `obj\Debug\<tfm>` folder on your file system. In that file, make sure that there isn't an empty array of `TagHelpers`.
+If your project has loaded correctly, verify that a `project.razor.vscode.bin` file exists in the `obj\Debug\<tfm>` folder on your file system. Since it is a binary file, it isn't straight forward to verify the contents of the file directly, but in general most Razor projects should result in a file that is at least 150KB in size. If the file is only a few kilobytes it means that tag helpers and/or components are probably not being discovered correctly.
 
 To force the file to regenerate, close any open `.razor` or `.cshtml` files, reload the VS Code window, and once the project has loaded correctly, open any `.razor` or `.cshtml` file to trigger the regeneration process.
 
 ### Target framework errors are mentioned in Razor files
 
-The Razor language server generally does not have a concept of a "solution", but instead loads projects based on the presence of a `project.razor.vscode.json` file in the projects `obj\Debug\<tfm>` folder. Sometimes, old files from target frameworks that are no longer in use can cause confusion, making the Razor server think a project is multi-targeted or that some components are still referenced when they're not.
+The Razor language server generally does not have a concept of a "solution", but instead loads projects based on the presence of a `project.razor.vscode.bin` file in the projects `obj\Debug\<tfm>` folder. Sometimes, old files from target frameworks that are no longer in use can cause confusion, making the Razor server think a project is multi-targeted or that some components are still referenced when they're not.
 
 To resolve this issue, clear out old folders from within the `obj` folder or clear all of them. Then, reload the VS Code window and open a `.razor` file. This should ensure that new JSON files are generated, and the old ones are removed.
 
@@ -257,4 +276,18 @@ To resolve this issue, clear out old folders from within the `obj` folder or cle
 
 ### I am not getting whole line completions
 
-Whole line completions are disabled when the [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot) extension is enabled to allow you to take advantage of the more advanced [AI completion](/docs/editor/artificial-intelligence.md) capabilities. You can verify that Copilot is enabled by checking if the Copilot logo is present in the lower right corner of VS Code.
+Whole line completions are disabled when the [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot) extension is enabled to allow you to take advantage of the more advanced [AI completion](/docs/editor/github-copilot.md) capabilities. You can verify that Copilot is enabled by checking if the Copilot logo is present in the lower right corner of VS Code.
+
+## Hot Reload
+
+### Hot Reload icon not appearing after I started debugging
+
+The debugger only starts a Hot Reload session if the option for Hot Reload is enabled in the C# Dev Kit [debugger settings](/docs/csharp/debugging.md#user-settings). If the option is enabled, it is expected that the Hot Reload icon appears in the status bar while debugging:
+
+![Hot Reload icon in the bottom bar](images/debugging/hotreload-statusbar.png)
+
+You can either click on the Hot Reload icon or can see diagnostic information by opening the **C# Hot Reload** Output window. If you don't see either of those, the project may not be supported by C# Dev Kit extension, see [Hot Reload supported projects](/docs/csharp/debugging.md#supported-projects-and-scenarios).
+
+### What types of edits are supported with Hot Reload?
+
+See [Supported code changes](https://learn.microsoft.com/visualstudio/debugger/supported-code-changes-csharp?view=vs-2022) for a list of the supported C# code changes with Hot Reload.

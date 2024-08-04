@@ -4,9 +4,9 @@ Area: typescript
 TOCTitle: Debugging
 ContentId: 19c60eb6-662b-444a-92f6-009642cc1e5b
 PageTitle: TypeScript debugging with Visual Studio Code
-DateApproved: 10/4/2023
+DateApproved: 08/01/2024
 MetaDescription: TypeScript debugging with Visual Studio Code.
-MetaSocialImage: images/typescript-tutorial/Languages_typescript.png
+MetaSocialImage: ../languages/images/typescript/typescript-social.png
 ---
 # Debugging TypeScript
 
@@ -23,8 +23,8 @@ For a simple example of source maps in action, see the [TypeScript tutorial](/do
 ```json
 {
     "compilerOptions": {
-        "target": "es5",
-        "module": "commonjs",
+        "target": "ES5",
+        "module": "CommonJS",
         "outDir": "out",
         "sourceMap": true
     }
@@ -100,8 +100,8 @@ tsconfig.json
 ```json
 {
     "compilerOptions": {
-        "target": "es5",
-        "module": "commonjs",
+        "target": "ES5",
+        "module": "CommonJS",
         "outDir": "out",
         "sourceMap": true
     }

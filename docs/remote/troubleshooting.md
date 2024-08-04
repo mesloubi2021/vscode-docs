@@ -5,7 +5,7 @@ TOCTitle: Tips and Tricks
 PageTitle: Visual Studio Code Remote Development Troubleshooting Tips and Tricks
 ContentId: 42e65445-fb3b-4561-8730-bbd19769a160
 MetaDescription: Visual Studio Code Remote Development troubleshooting tips and tricks for SSH, Containers, and the Windows Subsystem for Linux (WSL)
-DateApproved: 10/4/2023
+DateApproved: 08/01/2024
 ---
 # Remote Development Tips and Tricks
 
@@ -70,6 +70,17 @@ Run one of the following commands, in a **local terminal window** replacing user
 
 * Connecting to a **Windows** SSH host:
 
+  * The host uses OpenSSH Server and the user [belongs to the administrator group](https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_server_configuration#authorizedkeysfile):
+
+    ```bash
+    export USER_AT_HOST="your-user-name-on-host@hostname"
+    export PUBKEYPATH="$HOME/.ssh/id_ed25519.pub"
+
+    ssh $USER_AT_HOST "powershell Add-Content -Force -Path \"\$Env:PROGRAMDATA\\ssh\\administrators_authorized_keys\" -Value '$(tr -d '\n\r' < "$PUBKEYPATH")'"
+    ```
+
+  * Otherwise:
+
     ```bash
     export USER_AT_HOST="your-user-name-on-host@hostname"
     export PUBKEYPATH="$HOME/.ssh/id_ed25519.pub"
@@ -93,6 +104,17 @@ Run one of the following commands, in a **local PowerShell** window replacing us
     ```
 
 * Connecting to a **Windows** SSH host:
+
+  * The host uses OpenSSH Server and the user [belongs to the administrator group](https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_server_configuration#authorizedkeysfile):
+
+    ```powershell
+    $USER_AT_HOST="your-user-name-on-host@hostname"
+    $PUBKEYPATH="$HOME\.ssh\id_ed25519.pub"
+
+    Get-Content "$PUBKEYPATH" | Out-String | ssh $USER_AT_HOST "powershell `"Add-Content -Force -Path `"`$Env:PROGRAMDATA\ssh\administrators_authorized_keys`" `""
+    ```
+
+  * Otherwise:
 
     ```powershell
     $USER_AT_HOST="your-user-name-on-host@hostname"
@@ -551,6 +573,10 @@ The VS Code Server was previously installed under `~/.vscode-remote` so you can 
 ### SSH into a remote WSL 2 host
 
 You may want to use SSH to connect to a WSL distro running on your remote machine. Check out [this guide](https://www.hanselman.com/blog/the-easy-way-how-to-ssh-into-bash-and-wsl2-on-windows-10-from-an-external-machine) to learn how to SSH into Bash and WSL 2 on Windows 10 from an external machine.
+
+### Filing an issue
+
+If you are having trouble using the Remote-SSH extension and think that you need to file an issue, first make sure that you have read through the documentation on this site, and then see the [troubleshooting wiki doc](https://github.com/microsoft/vscode-remote-release/wiki/Remote-SSH-troubleshooting) for information on grabbing the log file and trying more steps that may help narrow down the source of the problem.
 
 ## Dev Containers tips
 

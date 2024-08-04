@@ -1,7 +1,7 @@
 ---
 # DO NOT TOUCH — Managed by doc writer
 ContentId: 8e03996d-35e9-4e9f-a60e-50d0962231b8
-DateApproved: 10/4/2023
+DateApproved: 08/01/2024
 
 # Summarize the whole topic in less than 300 characters for SEO purpose
 MetaDescription: Theme Color reference that lists all themable colors in Visual Studio Code.
@@ -58,6 +58,8 @@ The theme colors for VS Code window border.
 - `window.activeBorder`: Border color for the active (focused) window.
 - `window.inactiveBorder`: Border color for the inactive (unfocused) windows.
 
+The window border colors are only supported on macOS and Linux (not Windows) and only when the custom title bar is enabled (`"window.titleBarStyle": "custom"`).
+
 ## Text colors
 
 Colors inside a text document, such as the welcome page.
@@ -68,6 +70,7 @@ Colors inside a text document, such as the welcome page.
 - `textLink.activeForeground`: Foreground color for links in text when clicked on and on mouse hover.
 - `textLink.foreground`: Foreground color for links in text.
 - `textPreformat.foreground`: Foreground color for preformatted text segments.
+- `textPreformat.background`: Background color for preformatted text segments.
 - `textSeparator.foreground`: Color for text separators.
 
 ## Action colors
@@ -183,6 +186,7 @@ Colors for list and trees like the File Explorer. An active list/tree has keyboa
 - `list.filterMatchBackground`: Background color of the filtered matches in lists and trees.
 - `list.filterMatchBorder`: Border color of the filtered matches in lists and trees.
 - `list.deemphasizedForeground`: List/Tree foreground color for items that are deemphasized.
+- `list.dropBetweenBackground`: List/Tree drag and drop border color when moving items between items when using the mouse.
 - `tree.indentGuidesStroke`: Tree Widget's stroke color for indent guides.
 - `tree.inactiveIndentGuidesStroke`: Tree stroke color for the indentation guides that are not active.
 - `tree.tableColumnsBorder`: Tree stroke color for the indentation guides.
@@ -190,7 +194,7 @@ Colors for list and trees like the File Explorer. An active list/tree has keyboa
 
 ## Activity Bar
 
-The Activity Bar is displayed either on the far left or right of the workbench and allows fast switching between views of the Side Bar.
+The Activity Bar is usually displayed either on the far left or right of the workbench and allows fast switching between views of the Side Bar.
 
 - `activityBar.background`: Activity Bar background color.
 - `activityBar.dropBorder`: Drag and drop feedback color for the activity bar items. The activity bar is showing on the far left or right and allows to switch between views of the side bar.
@@ -202,11 +206,18 @@ The Activity Bar is displayed either on the far left or right of the workbench a
 - `activityBar.activeBorder`: Activity Bar active indicator border color.
 - `activityBar.activeBackground`: Activity Bar optional background color for the active element.
 - `activityBar.activeFocusBorder`: Activity bar focus border color for the active item.
+- `activityBarTop.foreground`: Active foreground color of the item in the Activity bar when it is on top. The activity allows to switch between views of the side bar.
+- `activityBarTop.activeBorder`: Focus border color for the active item in the Activity bar when it is on top. The activity allows to switch between views of the side bar.
+- `activityBarTop.inactiveForeground`: Inactive foreground color of the item in the Activity bar when it is on top. The activity allows to switch between views of the side bar.
+- `activityBarTop.dropBorder`: Drag and drop feedback color for the items in the Activity bar when it is on top. The activity allows to switch between views of the side bar.
+- `activityBarTop.background`: Background color of the activity bar when set to top / bottom.
+- `activityBarTop.activeBackground`: Background color for the active item in the Activity bar when it is on top / bottom. The activity allows to switch between views of the side bar.
 
 ## Profiles
 
 - `profileBadge.background`: Profile badge background color. The profile badge shows on top of the settings gear icon in the activity bar.
 - `profileBadge.foreground`: Profile badge foreground color. The profile badge shows on top of the settings gear icon in the activity bar.
+- `profiles.sashBorder`: The color of the Profiles editor splitview sash border.
 
 ## Side Bar
 
@@ -221,6 +232,12 @@ The Side Bar contains views like the Explorer and Search.
 - `sideBarSectionHeader.background`: Side Bar section header background color.
 - `sideBarSectionHeader.foreground`: Side Bar section header foreground color.
 - `sideBarSectionHeader.border`: Side bar section header border color.
+- `sideBarActivityBarTop.border`: Border color between the activity bar at the top/bottom and the views.
+- `sideBarTitle.background`: Side bar title background color. The side bar is the container for views like explorer and search.
+- `sideBarStickyScroll.background`: Background color of sticky scroll in the side bar.
+- `sideBarStickyScroll.border`: Border color of sticky scroll in the side bar.
+- `sideBarStickyScroll.shadow`: Shadow color of sticky scroll in the side bar.
+
 
 ## Minimap
 
@@ -255,7 +272,7 @@ Editor Groups are the containers of editors. There can be many editor groups. A 
 
   ![editorGroup.dropBackground](images/theme-color/editorGroup-dropbackground.gif)
 
-- `editorGroupHeader.noTabsBackground`: Background color of the editor group title header when Tabs are disabled (set `"workbench.editor.showTabs": false`).
+- `editorGroupHeader.noTabsBackground`: Background color of the editor group title header when using single Tab (set `"workbench.editor.showTabs": "single"`).
 
   ![editorGroupHeader.noTabsBackground](images/theme-color/editorgroupheader-notabsbackground.gif)
 
@@ -279,9 +296,14 @@ Editor Groups are the containers of editors. There can be many editor groups. A 
 - `tab.activeForeground`: Active Tab foreground color in an active group.
 - `tab.border`: Border to separate Tabs from each other.
 - `tab.activeBorder`: Bottom border for the active tab.
+- `tab.selectedBorderTop`: Border to the top of a selected tab. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.
+- `tab.selectedBackground`: Background of a selected tab. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.
+- `tab.selectedForeground`: Foreground of a selected tab. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.
+- `tab.dragAndDropBorder`: Border between tabs to indicate that a tab can be inserted between two tabs. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.
 - `tab.unfocusedActiveBorder`: Bottom border for the active tab in an inactive editor group.
 - `tab.activeBorderTop`: Top border for the active tab.
 - `tab.unfocusedActiveBorderTop`: Top border for the active tab in an inactive editor group
+- `tab.dragAndDropBorder`: Border between tabs to indicate that a tab can be inserted between two tabs. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.
 - `tab.lastPinnedBorder`: Border on the right of the last pinned editor to separate from unpinned editors.
 - `tab.inactiveBackground`: Inactive Tab background color.
 - `tab.unfocusedInactiveBackground`: Inactive Tab background color in an unfocused group
@@ -315,6 +337,11 @@ All other editor colors are listed here:
 - `editorLineNumber.dimmedForeground`: Color of the final editor line when editor.renderFinalNewline is set to dimmed.
 - `editorCursor.background`: The background color of the editor cursor. Allows customizing the color of a character overlapped by a block cursor.
 - `editorCursor.foreground`: Color of the editor cursor.
+- `editorMultiCursor.primary.foreground`: Color of the primary editor cursor when multiple cursors are present.
+- `editorMultiCursor.primary.background`: The background color of the primary editor cursor when multiple cursors are present. Allows customizing the color of a character overlapped by a block cursor.
+- `editorMultiCursor.secondary.foreground`: Color of secondary editor cursors when multiple cursors are present.
+- `editorMultiCursor.secondary.background`: The background color of secondary editor cursors when multiple cursors are present. Allows customizing the color of a character overlapped by a block cursor.
+- `editor.placeholder.foreground`: Foreground color of the placeholder text in the editor.
 
 Selection colors are visible when selecting one or more characters. In addition to the selection also all regions with the same content are highlighted.
 
@@ -342,6 +369,8 @@ Find colors depend on the current find string in the Find/Replace dialog.
 ![Find matches](images/theme-color/findmatches.png)
 
 - `editor.findMatchBackground`: Color of the current search match.
+- `editor.findMatchForeground`: Text color of the current search match.
+- `editor.findMatchHighlightForeground`: Foreground color of the other search matches.
 - `editor.findMatchHighlightBackground`: Color of the other search matches. The color must not be opaque so as not to hide underlying decorations.
 - `editor.findRangeHighlightBackground`: Color the range limiting the search (Enable 'Find in Selection' in the find widget). The color must not be opaque so as not to hide underlying decorations.
 - `editor.findMatchBorder`: Border color of the current search match.
@@ -374,6 +403,10 @@ The current line is typically shown as either background highlight or a border (
 
 - `editor.lineHighlightBackground`: Background color for the highlight of line at the cursor position.
 - `editor.lineHighlightBorder`: Background color for the border around the line at the cursor position.
+
+The color for the editor watermark
+
+- `editorWatermark.foreground`: Foreground color for the labels in the editor watermark.
 
 The color for unicode highlights
 
@@ -444,6 +477,7 @@ Lightbulb:
 
 - `editorLightBulb.foreground`: The color used for the lightbulb actions icon.
 - `editorLightBulbAutoFix.foreground`: The color used for the lightbulb auto fix actions icon.
+- `editorLightBulbAi.foreground`: The color used for the lightbulb AI icon.
 
 Bracket matches:
 
@@ -481,6 +515,7 @@ Bracket pair guides:
 Folding:
 
 - `editor.foldBackground`: Background color for folded ranges. The color must not be opaque so as not to hide underlying decorations.
+- `editor.foldPlaceholderForeground`: Color of the collapsed text after the first line of a folded range.
 
 Overview ruler:
 
@@ -501,6 +536,8 @@ This ruler is located beneath the scroll bar on the right edge of the editor and
 - `editorOverviewRuler.warningForeground`: Overview ruler marker color for warnings.
 - `editorOverviewRuler.infoForeground`: Overview ruler marker color for infos.
 - `editorOverviewRuler.bracketMatchForeground`: Overview ruler marker color for matching brackets.
+- `editorOverviewRuler.inlineChatInserted`: Overview ruler marker color for inline chat inserted content.
+- `editorOverviewRuler.inlineChatRemoved`: Overview ruler marker color for inline chat removed content.
 
 Errors and warnings:
 
@@ -541,6 +578,7 @@ The editor comments widget can be seen when reviewing pull requests:
 - `editorCommentsWidget.unresolvedBorder`: Color of borders and arrow for unresolved comments.
 - `editorCommentsWidget.rangeBackground`: Color of background for comment ranges.
 - `editorCommentsWidget.rangeActiveBackground`: Color of background for currently selected or hovered comment range.
+- `editorCommentsWidget.replyInputBackground`: Background color for comment reply input box.
 
 ## Diff editor colors
 
@@ -560,28 +598,41 @@ For coloring inserted and removed text, use either a background or a border colo
 - `diffEditorOverview.removedForeground`: Diff overview ruler foreground for removed content.
 - `diffEditor.unchangedRegionBackground`: The color of unchanged blocks in diff editor.
 - `diffEditor.unchangedRegionForeground`: The foreground color of unchanged blocks in the diff editor.
+- `diffEditor.unchangedRegionShadow`: The color of the shadow around unchanged region widgets.
 - `diffEditor.unchangedCodeBackground`: The background color of unchanged code in the diff editor.
 - `diffEditor.move.border`: The border color for text that got moved in the diff editor.
 - `diffEditor.moveActive.border`: The active border color for text that got moved in the diff editor.
+- `multiDiffEditor.headerBackground`: The background color of the diff editor's header
+- `multiDiffEditor.background`: The background color of the multi file diff editor
+- `multiDiffEditor.border`: The border color of the multi file diff editor
 
 ## Chat colors
 
 - `chat.requestBorder`: The border color of a chat request.
+- `chat.requestBackground`: The background color of a chat request.
 - `chat.slashCommandBackground`: The background color of a chat slash command.
 - `chat.slashCommandForeground`: The foreground color of a chat slash command.
+- `chat.avatarBackground`: The background color of a chat avatar.
+- `chat.avatarForeground`: The foreground color of a chat avatar.
+- `chat.requestBackground`: The background color of a chat request.
 
 ## Inline Chat colors
 
 - `inlineChat.background`: Background color of the interactive editor widget.
+- `inlineChat.foreground`: Foreground color of the interactive editor widget
 - `inlineChat.border`: Border color of the interactive editor widget.
 - `inlineChat.shadow`: Shadow color of the interactive editor widget.
-- `inlineChat.regionHighlight`: Background highlighting of the current interactive region. Must be transparent.
 - `inlineChatInput.border`: Border color of the interactive editor input.
 - `inlineChatInput.focusBorder`: Border color of the interactive editor input when focused.
 - `inlineChatInput.placeholderForeground`: Foreground color of the interactive editor input placeholder.
 - `inlineChatInput.background`: Background color of the interactive editor input.
 - `inlineChatDiff.inserted`: Background color of inserted text in the interactive editor input.
 - `inlineChatDiff.removed`: Background color of removed text in the interactive editor input.
+
+## Panel Chat colors
+
+- `interactive.activeCodeBorder`: The border color for the current interactive code cell when the editor has focus.
+- `interactive.inactiveCodeBorder`: The border color for the current interactive code cell when the editor does not have focus.
 
 ## Editor widget colors
 
@@ -613,6 +664,8 @@ The Editor widget is shown in front of the editor content. Examples are the Find
 - `editorGhostText.foreground`: Foreground color of the ghost text shown by inline completion providers and the suggest preview.
 
 - `editorStickyScroll.background`: Editor sticky scroll background color.
+- `editorStickyScroll.border`: Border color of sticky scroll in the editor.
+- `editorStickyScroll.shadow`:  Shadow color of sticky scroll in the editor.
 - `editorStickyScrollHover.background`: Editor sticky scroll on hover background color.
 
 The Debug Exception widget is a peek view that shows in the editor when debug stops at an exception.
@@ -700,7 +753,12 @@ Panels are shown below the editor area and contain views like Output and Integra
 - `panelSection.dropBackground`: Drag and drop feedback color for the panel sections. The color should have transparency so that the panel sections can still shine through. Panels are shown below the editor area and contain views like output and integrated terminal.
 - `panelSectionHeader.background`: Panel section header background color. Panels are shown below the editor area and contain views like output and integrated terminal.
 - `panelSectionHeader.foreground`: Panel section header foreground color. Panels are shown below the editor area and contain views like output and integrated terminal.
+- `panelStickyScroll.background`: Background color of sticky scroll in the panel.
+- `panelStickyScroll.border`: Border color of sticky scroll in the panel.
+- `panelStickyScroll.shadow`: Shadow color of sticky scroll in the panel.
 - `panelSectionHeader.border`: Panel section header border color used when multiple views are stacked vertically in the panel. Panels are shown below the editor area and contain views like output and integrated terminal.
+- `outputView.background`: Output view background color.
+- `outputViewStickyScroll.background`: Output view sticky scroll background color.
 
 ## Status Bar colors
 
@@ -897,6 +955,10 @@ The following customizations are available:
 - `terminalCommandDecoration.errorBackground`: The terminal command decoration background color for error commands.
 - `terminalOverviewRuler.cursorForeground`: The overview ruler cursor color.
 - `terminalOverviewRuler.findMatchForeground`: Overview ruler marker color for find matches in the terminal.
+- `terminalStickyScroll.background`: The background color of the sticky scroll overlay in the terminal.
+- `terminalStickyScroll.border`: The border of the sticky scroll overlay in the terminal.
+- `terminalStickyScrollHover.background`: The background color of the sticky scroll overlay in the terminal when hovered.
+- `terminal.initialHintForeground`: Foreground color of the terminal initial hint.
 
 ## Debug colors
 
@@ -917,22 +979,40 @@ The following customizations are available:
 - `debugTokenExpression.boolean`: Foreground color for booleans in debug views.
 - `debugTokenExpression.number`: Foreground color for numbers in debug views.
 - `debugTokenExpression.error`: Foreground color for expression errors in debug views.
+- `debugTokenExpression.type`: Foreground color for the token types shown in the debug views (ie. the Variables or Watch view).
 
 ## Testing colors
 
-- `testing.iconFailed`: Color for the 'failed' icon in the test explorer.
-- `testing.iconErrored`: Color for the 'Errored' icon in the test explorer.
-- `testing.iconPassed`: Color for the 'passed' icon in the test explorer.
 - `testing.runAction`: Color for 'run' icons in the editor.
+- `testing.iconErrored`: Color for the 'Errored' icon in the test explorer.
+- `testing.iconFailed`: Color for the 'failed' icon in the test explorer.
+- `testing.iconPassed`: Color for the 'passed' icon in the test explorer.
 - `testing.iconQueued`: Color for the 'Queued' icon in the test explorer.
 - `testing.iconUnset`: Color for the 'Unset' icon in the test explorer.
 - `testing.iconSkipped`: Color for the 'Skipped' icon in the test explorer.
+- `testing.iconErrored.retired`: Retired color for the 'Errored' icon in the test explorer.
+- `testing.iconFailed.retired`: Retired color for the 'failed' icon in the test explorer.
+- `testing.iconPassed.retired`: Retired color for the 'passed' icon in the test explorer.
+- `testing.iconQueued.retired`: Retired color for the 'Queued' icon in the test explorer.
+- `testing.iconUnset.retired`: Retired color for the 'Unset' icon in the test explorer.
+- `testing.iconSkipped.retired`: Retired color for the 'Skipped' icon in the test explorer.
 - `testing.peekBorder`: Color of the peek view borders and arrow.
 - `testing.peekHeaderBackground`: Color of the peek view borders and arrow.
 - `testing.message.error.decorationForeground`: Text color of test error messages shown inline in the editor.
 - `testing.message.error.lineBackground`: Margin color beside error messages shown inline in the editor.
 - `testing.message.info.decorationForeground`: Text color of test info messages shown inline in the editor.
 - `testing.message.info.lineBackground`: Margin color beside info messages shown inline in the editor.
+- `testing.messagePeekBorder`: Color of the peek view borders and arrow when peeking a logged message.
+- `testing.messagePeekHeaderBackground`: Color of the peek view borders and arrow when peeking a logged message.
+- `testing.coveredBackground`: Background color of text that was covered.
+- `testing.coveredBorder`: Border color of text that was covered.
+- `testing.coveredGutterBackground`: Gutter color of regions where code was covered.
+- `testing.uncoveredBranchBackground`: Background of the widget shown for an uncovered branch.
+- `testing.uncoveredBackground`: Background color of text that was not covered.
+- `testing.uncoveredBorder`: Border color of text that was not covered.
+- `testing.uncoveredGutterBackground`: Gutter color of regions where code not covered.
+- `testing.coverCountBadgeBackground`: Background for the badge indicating execution count
+- `testing.coverCountBadgeForeground`: Foreground for the badge indicating execution count
 
 ## Welcome page colors
 
@@ -1114,11 +1194,20 @@ The theme colors for symbol icons that appears in the Outline view, breadcrumb n
 - `commentsView.unresolvedIcon`: Icon color for unresolved comments.
 
 ## Action Bar colors
+
 - `actionBar.toggledBackground`: Background color for toggled action items in action bar.
 
 ## Simple Find Widget
+
 - `simpleFindWidget.sashBorder`: Border color of the sash border.
+
+## SCM
+
+- `scm.historyItemAdditionsForeground`: History item additions foreground color.
+- `scm.historyItemDeletionsForeground`: History item deletions foreground color.
+- `scm.historyItemStatisticsBorder`: History item statistics border color.
+- `scm.historyItemSelectedStatisticsBorder`: History item selected statistics border color.
 
 ## Extension colors
 
-Color ids can also be contributed by extensions through the [color contribution point](/api/references/contribution-points#contributes.colors). These colors also appear when using code complete in the `workbench.colorCustomizations` settings and the color theme definition file. Users can see what colors an extension defines in the [extension contributions](/docs/editor/extension-marketplace#extension-details) tab.
+Color IDs can also be contributed by extensions through the [color contribution point](/api/references/contribution-points#contributes.colors). These colors also appear when using code complete in the `workbench.colorCustomizations` settings and the color theme definition file. Users can see what colors an extension defines in the [extension contributions](/docs/editor/extension-marketplace#extension-details) tab.

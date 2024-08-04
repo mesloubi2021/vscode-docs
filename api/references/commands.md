@@ -1,7 +1,7 @@
 ---
 # DO NOT TOUCH — Managed by doc writer
 ContentId: A010AEDF-EF37-406E-96F5-E129408FFDE1
-DateApproved: 10/4/2023
+DateApproved: 08/01/2024
 
 # Summarize the whole topic in less than 300 characters for SEO purpose
 MetaDescription: Visual Studio Code built-in commands reference.
@@ -268,6 +268,7 @@ let success = await commands.executeCommand('vscode.openFolder', uri);
 * _left_ - Left-hand side resource of the diff editor
 * _right_ - Right-hand side resource of the diff editor
 * _title_ - Human readable title for the diff editor
+* _options_ - (optional) Either the column in which to open, or editor options (see vscode.TextDocumentShowOptions)
 
 `vscode.prepareTypeHierarchy` - Prepare type hierarchy at a position inside a document
 
@@ -359,9 +360,17 @@ let success = await commands.executeCommand('vscode.openFolder', uri);
   * 'selectionLines': Array of the start lines (0-based) of the editor selections to apply the fold action to. If not set, the active selection(s) will be used.
   If no levels or direction is set, folds the region at the locations or if already collapsed, the first uncollapsed parent instead.
 
-`editor.actions.findWithArgs` - Open a new In-Editor Find Widget.
+`editor.toggleFold` - Folds or unfolds the content in the editor depending on its current state
 
-* _Open a new In-Editor Find Widget args_ -
+`editor.actions.findWithArgs` - Open a new In-Editor Find Widget with specific options.
+
+* searchString - String to prefill the find input
+* replaceString - String to prefill the replace input
+* isRegex - enable regex
+* preserveCase - try to keep the same case when replacing
+* findInSelection - restrict the find location to the current selection
+* matchWholeWord
+* isCaseSensitive
 
 `editor.action.goToLocations` - Go to locations from a position in a file
 
@@ -508,6 +517,11 @@ let success = await commands.executeCommand('vscode.openFolder', uri);
 `workbench.action.openLogFile` - workbench.action.openLogFile
 
 * _logFile_ -
+
+`workbench.action.openWalkthrough` - Open the walkthrough.
+
+* _walkthroughID_ - ID of the walkthrough to open.
+* _toSide_ - Opens the walkthrough in a new editor group to the side.
 
 ## Simple commands
 
